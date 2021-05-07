@@ -1,0 +1,12 @@
+:global int max_turbo_combine
+:global int current_turbo_combine
+
+current_turbo_combine < 12
+
+current_turbo_combine = current_turbo_combine + 1
+execute("museum turbo combine")
+execute("museum combine")
+gotoif(6, current_turbo_combine >= max_turbo_combine)
+goto(1)
+current_turbo_combine = 1
+stop("museum turbo combine")
