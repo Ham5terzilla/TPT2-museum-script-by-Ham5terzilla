@@ -31,7 +31,7 @@ Put all stones which you want to upgrade to you're equipped inv. (tier 1 or tier
 
 ONLY OFFSHORE MARKET!!!
 
-If you have problems with this script try to re-import all 8 scripts and re-configure `museum init`. Make sure you don't have scripts witch same names and that no more scripts started from `T` key(or other key if changed)
+**If you have problems with this script** try to re-import all 8 scripts and re-configure `museum init`. Make sure you don't have scripts witch same names and that no more scripts started from `T` key(or other key if changed)
 ## Import codes:
 warning: need at least 15 lines. 
 Name|Import Code
