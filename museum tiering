@@ -1,0 +1,19 @@
+:global int ps_target_tier
+:global int time
+:global int current_equipped_slot
+
+move("equipped", current_equipped_slot, "inventory")
+executesync("museum turbo buy")
+gotoif(6, ((time >= 4000) | (freeSlots("inventory") == 0)) | (tier("inventory", 0) >= ps_target_tier))
+time = time + 1
+goto(3)
+stop("museum buy")
+gotoif(13, (freeSlots("inventory") == 0) | (time >= 4000))
+move("inventory", 0, "equipped")
+clear("inventory")
+clear("combinator")
+fill(false)
+goto(5000)
+time = 1
+executesync("museum combine stopped")
+goto(2)
