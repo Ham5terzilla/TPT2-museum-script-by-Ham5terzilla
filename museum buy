@@ -1,0 +1,9 @@
+:global int buy_maxtier
+:global int max_turbo_buy
+:global int current_turbo_buy
+
+current_turbo_buy <= max_turbo_buy
+
+fill(true)
+buyMarket(element("inventory", 0), buy_maxtier)
+goto(1)
