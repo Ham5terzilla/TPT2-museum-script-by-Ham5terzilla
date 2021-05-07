@@ -1,0 +1,16 @@
+:global int ps_target_tier
+:global int buy_maxtier
+:global int x
+
+x = 0
+move("inventory", 23, "combinator")
+buyMarket(element("inventory", 0), buy_maxtier)
+ps_target_tier = ternary.int(tier("inventory", 23) == -1, 0, tier("inventory", 23) + 12)
+move("inventory", 23, "combinator")
+move("inventory", 22, "combinator")
+gotoif(12, x >= 24)
+gotoif(10, tier("inventory", x) >= (ps_target_tier - 12))
+delete("inventory", x)
+x = x + 1
+goto(7)
+clear("combinator")
