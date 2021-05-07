@@ -1,0 +1,19 @@
+:global int max_cycles
+:global int current_cycle
+:global int ps_target_tier
+:global int buy_maxtier
+:global int current_equipped_slot
+
+gotoif(7, (tier("equipped", current_equipped_slot) >= (buy_maxtier + 12)) | (tier("equipped", current_equipped_slot) == -1))
+buyMarket(element("equipped", current_equipped_slot), buy_maxtier)
+ps_target_tier = ternary.int(tier("inventory", 0) == -1, 0, tier("inventory", 0) + 12)
+delete(ternary.string(tier("equipped", current_equipped_slot) <= tier("inventory", 0), "equipped", "inventory"), ternary.int(tier("equipped", current_equipped_slot) <= tier("inventory", 0), current_equipped_slot, 0))
+gotoif(7, int.max(tier("inventory", 0), tier("equipped", current_equipped_slot)) >= ps_target_tier)
+executesync("museum tiering")
+gotoif(10, current_equipped_slot >= 129)
+current_equipped_slot = current_equipped_slot + 1
+goto(1)
+gotoif(5000, (current_cycle >= max_cycles) & (max_cycles != -1))
+current_cycle = current_cycle + 1
+current_equipped_slot = 0
+goto(1)
