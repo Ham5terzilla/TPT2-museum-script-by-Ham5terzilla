@@ -3,10 +3,11 @@
 :global int ps_target_tier
 :global int buy_maxtier
 :global int current_equipped_slot
+:global int add_tier
 
-gotoif(7, (tier("equipped", current_equipped_slot) >= (buy_maxtier + 12)) | (tier("equipped", current_equipped_slot) == -1))
+gotoif(7, (tier("equipped", current_equipped_slot) >= (buy_maxtier + add_tier)) | (tier("equipped", current_equipped_slot) == -1))
 buyMarket(element("equipped", current_equipped_slot), buy_maxtier)
-ps_target_tier = ternary.int(tier("inventory", 0) == -1, 0, tier("inventory", 0) + 12)
+ps_target_tier = ternary.int(tier("inventory", 0) == -1, 0, tier("inventory", 0) + add_tier)
 delete(ternary.string(tier("equipped", current_equipped_slot) <= tier("inventory", 0), "equipped", "inventory"), ternary.int(tier("equipped", current_equipped_slot) <= tier("inventory", 0), current_equipped_slot, 0))
 gotoif(7, int.max(tier("inventory", 0), tier("equipped", current_equipped_slot)) >= ps_target_tier)
 executesync("museum tiering")
