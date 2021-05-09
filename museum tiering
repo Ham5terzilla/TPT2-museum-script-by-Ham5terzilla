@@ -1,6 +1,7 @@
 :global int ps_target_tier
 :global int time
 :global int current_equipped_slot
+:global int add_tier
 
 move("equipped", current_equipped_slot, "inventory")
 executesync("museum turbo buy")
