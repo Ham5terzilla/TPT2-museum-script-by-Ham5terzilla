@@ -24,6 +24,8 @@ value can be searched using table. For example, for 45 stones t7, that can be up
 
 `max_turbo` combine and max_turbo_buy can be changed, but see for limitation of executed scripts in one time (100?), so, i execute 64+8+3 scripts. 
 
+`add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`
+
 `current_turbo_combine`, `current_turbo_buy`, `ps_target_tier`, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it
 
 My museum script have cycles, that can be infinite. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded. Script cover all cases of offshore market changing: tier's up, tier's down, changing element. Script can upgrade stones max to +12 from buyable tier (from t5 to t17 in example). 
