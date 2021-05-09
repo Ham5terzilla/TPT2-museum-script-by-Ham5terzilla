@@ -7,10 +7,12 @@
 :global int max_turbo_combine
 :global int max_cycles
 :global int buy_maxtier
+:global int add_tier
 
 key.t()
 
 buy_maxtier = 7
+add_tier = 12
 max_cycles = -1
 max_turbo_combine = 65
 max_turbo_buy = 9
