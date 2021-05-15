@@ -13,8 +13,7 @@
 
 
 ### en:
-sorry for not translate, i should fix that.
-##### old translate:
+Warning: bad english (VERY BAD)
 ###### In script Museum init can be changed:
 
 `buy_maxtier` - max tier that can be bough from OFFSHORE MARKET
