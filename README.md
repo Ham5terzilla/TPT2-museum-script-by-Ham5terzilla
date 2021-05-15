@@ -22,7 +22,7 @@ value can be searched using table. For example, for 45 stones t7, that can be up
 
 `max_cycles` - can be any positive number starting from 1 or can be number -1 for infinity cycles. 1 cycle is all 129 slots checked and tried to upgrade. 
 
-`max_turbo` combine and max_turbo_buy can be changed, but see for limitation of executed scripts in one time (100?), so, i execute 64+8+3 scripts. 
+`max_turbo_combine` and `max_turbo_buy` can be changed, but see for limitation of executed scripts in one time (100?), so, i execute 64+8+3 scripts. 
 
 `add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`
 
