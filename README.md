@@ -27,7 +27,7 @@ value can be searched using table. For example, for 45 stones t7, that can be up
 
 `current_turbo_combine`, `current_turbo_buy`, `ps_target_tier`, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it
 
-My museum script have cycles, that can be infinite. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded. **Script cover all cases of offshore market changing: tier's up, tier's down, *changing element(stop selling element).*** Script can upgrade stones max to `add_tier` from buyable tier (from t5 to t17 in example). 
+My museum script have cycles, that can be infinite. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded. **Script cover all cases of offshore market changing: tier's up, tier's down, *changing element(stop selling element).*** Script can upgrade stones max to `add_tier` + buyable tier (from t5 to t17 in example). 
 
 Put all stones which you want to upgrade to you're equipped inv. (tier 1 or tier any) And all that stones upgraded after many many time. 
 
