@@ -19,11 +19,13 @@ Warning: bad english (VERY BAD)
 `buy_maxtier` - max tier that can be bough from OFFSHORE MARKET
 value can be searched using table. For example, for 45 stones t7, that can be upgraded to t19, cost around 3QI
 
+`add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`
+
+**PRO TIP:** use [`TPT2.xlsx` table](https://github.com/Ham5terzilla/TPT2-museum-script-by-Ham5terzilla/raw/main/TPT2.xlsx) for calculate `buy_maxtier` and `add_tier` values for your case. 
+
 `max_cycles` - can be any positive number starting from 1 or can be number -1 for infinity cycles. 1 cycle is all 129 slots checked and tried to upgrade. 
 
 `max_turbo_combine` and `max_turbo_buy` can be changed, but see for limitation of executed scripts in one time (100?), so, i execute 64+8+3 scripts. 
-
-`add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`
 
 `current_turbo_combine`, `current_turbo_buy`, `ps_target_tier`, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it
 
@@ -35,7 +37,7 @@ Start state is no any stones in inventory(not equipped)(right area) and in combi
 
 ONLY OFFSHORE MARKET!!!
 
-If you think script is broken in the middle of the process try to wait 5 mins (when global `time` value is >= 4000)
+If you think **script is broken in the middle of the process** try to wait 5 mins (when global `time` value is >= 4000)
 
 
 **If you have problems with this script** try to re-import all 8 scripts and re-configure `museum init`. Make sure you don't have scripts witch same names and that no more scripts started from `T` key(or other key if changed)
