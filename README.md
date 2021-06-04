@@ -27,7 +27,7 @@ value can be searched using table. For example, for 45 stones t7, that can be up
 
 `max_turbo_combine` and `max_turbo_buy` can be changed, but see for limitation of executed scripts in one time (100?), so, i execute 64+8+3 scripts. 
 
-`current_turbo_combine`, `current_turbo_buy`, `ps_target_tier`, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it
+`current_turbo_combine`, `current_turbo_buy`, **`ps_target_tier`**, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it
 
 My museum script have cycles, that can be infinite. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded. **Script cover all cases of offshore market changing: tier's up, tier's down, *changing element(stop selling element).*** Script can upgrade stones max to `add_tier` + buyable tier (if offshore market sell **NOW** t5 and our `add_tier` is `6` script upgrade stone to t11. and max possible is `buy_maxtier` + `add_tier`). 
 
@@ -60,3 +60,20 @@ museum combine|`Dm11c2V1bSBjb21iaW5lAAAAAAEAAAAOY29tcGFyaXNvbi5pbnQOZ2xvYmFsLmlu
 museum turbo buy|`EG11c2V1bSB0dXJibyBidXkAAAAAAQAAAA5jb21wYXJpc29uLmludA5nbG9iYWwuaW50LmdldAhjb25zdGFudAQRY3VycmVudF90dXJib19idXkIY29uc3RhbnQEATwIY29uc3RhbnQCBAAAAAcAAAAOZ2xvYmFsLmludC5zZXQIY29uc3RhbnQEEWN1cnJlbnRfdHVyYm9fYnV5DmFyaXRobWV0aWMuaW50Dmdsb2JhbC5pbnQuZ2V0CGNvbnN0YW50BBFjdXJyZW50X3R1cmJvX2J1eQhjb25zdGFudAQBKwhjb25zdGFudAIBAAAAD2dlbmVyaWMuZXhlY3V0ZQhjb25zdGFudAQQbXVzZXVtIHR1cmJvIGJ1eQ9nZW5lcmljLmV4ZWN1dGUIY29uc3RhbnQECm11c2V1bSBidXkOZ2VuZXJpYy5nb3RvaWYIY29uc3RhbnQCBgAAAA5jb21wYXJpc29uLmludA5nbG9iYWwuaW50LmdldAhjb25zdGFudAQRY3VycmVudF90dXJib19idXkIY29uc3RhbnQEAj49Dmdsb2JhbC5pbnQuZ2V0CGNvbnN0YW50BA1tYXhfdHVyYm9fYnV5DGdlbmVyaWMuZ290bwhjb25zdGFudAIBAAAADmdsb2JhbC5pbnQuc2V0CGNvbnN0YW50BBFjdXJyZW50X3R1cmJvX2J1eQhjb25zdGFudAIBAAAADGdlbmVyaWMuc3RvcAhjb25zdGFudAQQbXVzZXVtIHR1cmJvIGJ1eQ==`
 museum buy|`Cm11c2V1bSBidXkAAAAAAQAAAA5jb21wYXJpc29uLmludA5nbG9iYWwuaW50LmdldAhjb25zdGFudAQRY3VycmVudF90dXJib19idXkIY29uc3RhbnQEAjw9Dmdsb2JhbC5pbnQuZ2V0CGNvbnN0YW50BA1tYXhfdHVyYm9fYnV5AwAAAAttdXNldW0uZmlsbAhjb25zdGFudAEBEG11c2V1bS5idXlNYXJrZXQUbXVzZXVtLnN0b25lLmVsZW1lbnQIY29uc3RhbnQECWludmVudG9yeQhjb25zdGFudAIAAAAADmdsb2JhbC5pbnQuZ2V0CGNvbnN0YW50BAtidXlfbWF4dGllcgxnZW5lcmljLmdvdG8IY29uc3RhbnQCAQAAAA==`
 bonus: erase the reality|`EWVyYXNlIHRoZSByZWFsaXR5AQAAAAVrZXkucQAAAAACAAAADG11c2V1bS5jbGVhcghjb25zdGFudAQJaW52ZW50b3J5DG11c2V1bS5jbGVhcghjb25zdGFudAQKY29tYmluYXRvcg==`
+
+### Some explanation:
+We have that interface
+```
+|+++|..|
+|+++|..|
+|+--|==|
+```
+`Equipped` in left, `inventory` in right and `combinator`.
+Script trying to upgrade every stone in `Equipped` and search it consistently
+```
+|?++|..|    |+?+|..|    |++?|..|    |+++|..|    |+++|..|    |+++|..|    |+++|..|    |+++|..|    |+++|..|
+|+++|..| -> |+++|..| -> |+++|..| -> |?++|..| -> |+?+|..| -> |++?|..| -> |+++|..| -> |+++|..| -> |+++|..|
+|+--|==|    |+--|==|    |+--|==|    |+--|==|    |+--|==|    |+--|==|    |?--|==|    |+?-|==|    |+-?|==|
+```
+Script check `?` stone. If stone tier is more or equal than `buy_maxtier` + `add_tier` then stone is should be skipped and we go to check next stone, else we buy stone with this element from offshore market with tier up to `buy_maxtier` (can be lesser or equal (stone tier from offshore every time can changing such as stone elements)) and if tier of `?` stone is **more or equal** than tier of *newly bought stone* + `add_tier` AND tier of *newly bought stone* is **not equal** `-1` then script delete weaker stone (`?` stone if his tier is lesser than tier of bought stone and vice versa), then moving stone from `?` slot to `inventory` and start upgrading it (in this case if deleted stone is bought stone, we just move stone from equipped to inventory, in vice versa nothing is happened)
+PS: If we try to check tier of not existing stone `-1` is returned.
