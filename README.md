@@ -1,46 +1,43 @@
 # TPT2-museum-script-by-Ham5terzilla
 ### ru:
 #### Описание:
-Очередной скрипт для музея. На этот раз с крутыми фичами. 
-Внимание: скрипт использует только оффшорный маркет (offshore market), запускает 80 копий (для турбо комбинирования и покупок) и требует 15 строк. 
-Работать с обычным магазином он не умеет. Приветствуется модификация, которая позволит работать с обычным магазином тоже. 
-Что делает скрипт: улучшает все камни, находящиеся в инвентаре слева настолько, на сколько получится.
-Максимальное улучшение +12 от тира камня, который можно купить прямо сейчас. 
-Для проверки насколько камень может быть улучшен покупается 1 камень из offshore market, затем, если текущий камень тиром меньше, чем +12 от купленного камня, то скрипт будет его улучшать.
-Предусмотрены все возможные ситуации:
+Очередной скрипт для музея. На этот раз с крутыми фичами.  
+Внимание: скрипт использует только оффшорный маркет (offshore market), запускает 80 копий (для турбо комбинирования и покупок) и требует 15 строк.  
+Работать с обычным магазином он не умеет. Приветствуется модификация, которая позволит работать с обычным магазином тоже.  
+Что делает скрипт: улучшает все камни, находящиеся в инвентаре слева настолько, на сколько получится.  
+Максимальное улучшение +12 от тира камня, который можно купить прямо сейчас.  
+Для проверки насколько камень может быть улучшен покупается 1 камень из offshore market, затем, если текущий камень тиром меньше, чем +12 от купленного камня, то скрипт будет его улучшать.  
+Предусмотрены все возможные ситуации:  
 Если маркет перестал продавать нужный элемент, если повысился тир продаваемых камней, если понизился тир продаваемых камней, если переполнился инвентарь(например когда мы делаем финальный камень +12 от начального).
 
 
 
 ### en:
-Warning: bad english (VERY BAD)
+Warning: bad english (VERY BAD)  
 ###### In script Museum init can be changed:
 
-`buy_maxtier` - max tier that can be bough from OFFSHORE MARKET
-value can be searched using table. For example, for 45 stones t7, that can be upgraded to t19, cost around 3QI
+`buy_maxtier` - max tier that can be bough from OFFSHORE MARKET.  
+`add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`.  
+**PRO TIP:** use [`TPT2.xlsx` table](https://github.com/Ham5terzilla/TPT2-museum-script-by-Ham5terzilla/raw/main/TPT2.xlsx) for calculate `buy_maxtier` and `add_tier` values for your case.  
+`max_cycles` - can be any positive number starting from 1 or can be number -1 for infinity cycles. 1 cycle is all 129 slots checked and tried to upgrade.  
+`max_turbo_combine` and `max_turbo_buy` can be changed, but not really needed, see for limitation of executed scripts in one time (100?), so, in sum that values should be lesser than 75.  
+`current_turbo_combine`, `current_turbo_buy`, **`ps_target_tier`**, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it.  
 
-`add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`
+###### Description:
+My museum script have cycles. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded.  
+**Script cover all cases of offshore market changing: tier's up, tier's down, *changing element(stop selling element).*** And because of this, script can work overnight without controlling.    
+Script upgrade stones to `add_tier` + buyable tier. For example, if offshore market sell **NOW** t5 and our `add_tier` is `6` script upgrade stone to t11.  
+Max possible upgrade is `buy_maxtier` + `add_tier`.  
 
-**PRO TIP:** use [`TPT2.xlsx` table](https://github.com/Ham5terzilla/TPT2-museum-script-by-Ham5terzilla/raw/main/TPT2.xlsx) for calculate `buy_maxtier` and `add_tier` values for your case. 
+Put all stones which you want to upgrade to you're equipped inv. (tier 1 or tier any) And all that stones (including universal) upgraded after many many time. 
 
-`max_cycles` - can be any positive number starting from 1 or can be number -1 for infinity cycles. 1 cycle is all 129 slots checked and tried to upgrade. 
+**Start state** is no any stones in inventory(not equipped)(right area) and in combinator
 
-`max_turbo_combine` and `max_turbo_buy` can be changed, but not really needed, see for limitation of executed scripts in one time (100?), so, in sum that values should be lesser than 75. 
-
-`current_turbo_combine`, `current_turbo_buy`, **`ps_target_tier`**, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it
-
-My museum script have cycles, that can be infinite. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded. **Script cover all cases of offshore market changing: tier's up, tier's down, *changing element(stop selling element).*** Script can upgrade stones max to `add_tier` + buyable tier (if offshore market sell **NOW** t5 and our `add_tier` is `6` script upgrade stone to t11. and max possible is `buy_maxtier` + `add_tier`). 
-
-Put all stones which you want to upgrade to you're equipped inv. (tier 1 or tier any) And all that stones upgraded after many many time. 
-
-Start state is no any stones in inventory(not equipped)(right area) and in combinator
-
-ONLY OFFSHORE MARKET!!!
-
-If you think **script is broken in the middle of the process** try to wait 5 mins (when global `time` value is >= 4000)
-
-
-**If you have problems with this script** try to re-import all 8 scripts and re-configure `museum init`. Make sure you don't have scripts witch same names and that no more scripts started from `T` key(or other key if changed)
+###### Important:
+**Conflict with `turbo exec`**, don't try to use it with my scripts, i use own system.  
+Conflict with any scripts called as ANY of my scripts. It is very important, if you have any scripts called as my then my script can't work properly.    
+Be sure what you doesn't launch any another scripts with my scripts (see for scripts with same impulse key, scripts launching on AI open, scripts launching on museum open, etc). Because executable script limit is 100.  
+Be sure what you doesn't have any scripts called as my scripts!  
 ## Import codes:
 warning: need at least 15 lines. 
 
