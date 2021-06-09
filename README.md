@@ -1,29 +1,47 @@
 # TPT2-museum-script-by-Ham5terzilla
-### ru:
+### RU:
+*en users: see description below ru segment, in `EN` segment*
+#### Настройка `museum init`:
+Перед запуском необходимо настроить под себя всего 3 переменные на ваше усмотрение:  
+**`buy_maxtier`** - ограничение уровеня powerstone, который покупается с оффшорного маркета.  
+**`add_tier`** - выбор уровня апгрейда, к которому мы идём. Если `add_tier` = 3, например, то мы будем улучшать камни до `buy_maxtier`(с оговоркой). Допустимые значения от 1 до 12. рекомендую 9-10, если у вас мало времени, и 11-12, если вы ставите скрипт работать на ночь.    
+**`max_cycles`** - выставляем `-1` для того, чтобы скрипт работал бесконечно или любое число больше `1` (`0` нельзя, числа меньше `0`, кроме `-1` тоже нельзя).  
+Для того чтобы определить `buy_maxtier` и `add_tier` можно воспользоваться [`TPT2.xlsx` таблицей](https://github.com/Ham5terzilla/TPT2-museum-script-by-Ham5terzilla/raw/main/TPT2.xlsx) для удобства.  
+
+Также, если вы хотите, вы можете настроить `max_turbo_combine` и `max_turbo_buy`, эти 2 переменные отвечают за кол-во дочерних скриптов, отвечающих за покупку и комбинирование powerstone, в сумме эти 2 переменные должны быть меньше 80, желательно даже меньше 75. Но я считаю, что я уже подобрал оптимальные значения. По опыту использования могу сказать, что `max_turbo_buy` выставлять больше, чем 12, не имеет смысла. И, вероятно, лучше всего, когда `max_turbo_buy` относится к `max_turbo_combine` как 1 к 8 или 1 к 7. В общем, оставьте как есть =).  
+
+Все переменные, которые начинаются с префикса `current_`, а также `ps_target_tier` не нуждаются в редактировании и более того, это вредно для работоспособности скриптов.  
+
 #### Описание:
-Очередной скрипт для музея. На этот раз с крутыми фичами.  
-Внимание: скрипт использует только оффшорный маркет (offshore market), запускает 80 копий (для турбо комбинирования и покупок) и требует 15 строк.  
-Работать с обычным магазином он не умеет. Приветствуется модификация, которая позволит работать с обычным магазином тоже.  
-Что делает скрипт: улучшает все камни, находящиеся в инвентаре слева настолько, на сколько получится.  
-Максимальное улучшение +12 от тира камня, который можно купить прямо сейчас.  
-Для проверки насколько камень может быть улучшен покупается 1 камень из offshore market, затем, если текущий камень тиром меньше, чем +12 от купленного камня, то скрипт будет его улучшать.  
-Предусмотрены все возможные ситуации:  
-Если маркет перестал продавать нужный элемент, если повысился тир продаваемых камней, если понизился тир продаваемых камней, если переполнился инвентарь(например когда мы делаем финальный камень +12 от начального).
+Мои скрипты используют циклы. Один цикл это проверка всех 130 слотов в "`экипировке`" (`equipped`, область слева). Если какой-либо powerstone может быть улучшен, он будет улучшен.  
+Скрипт умеет работать со всеми случаями изменения оффшорного рынка: увеличение, уменьшение уровня продаваемого камня и остановка продажи камня с нужным элементом. Т.к. скрипт умеет с этим работать его можно оставить на ночь.  
+Скрипт не нуждается во действиях игрока во время своей работы, абсолютно все действия, после запуска скрипта, происходят автоматически.  
+Скрипт улучшает камни до `add_tier` + уровень камня, который можно **прямо сейчас** купить в оффшорном рынке. 
+Максимально возможное улучшение это `add_tier` + `buy_maxtier` уровень. Оно возможно при условии, что у вас будут на это ресурсы, оффшорный маркет может продавать такие камни и если оффшорный маркет будет продавать камни именно этого уровня в момент работы скрипта с этим камнем. Проще говоря, хотите максимальных улучшений, поставьте на ночь.  
 
+Для работы скрипта **необходимо очистить** инвентарь (правая область) и комбинатор. Поставьте все камни, которые вы хотели бы улучшить в экипировку (левая область), допустимы камни с любым элементом, включая universal, и камни любого тира, хоть 1, хоть 40. 
 
+#### Важно:
+Не надо пытаться прикрутить `turbo exec` к моим скриптам. Я использую собственную систему. Вы, если не разберётесь в полной мере, лишь поломаете скрипт вместо ожидаемого эффекта.  
+Запускать скрипт вместе с другими скриптами **не допустимо**. Причина этому: возможное вмешательство в работу, а также вывод моего скрипта из строя по причине переполнения предельно допустимого кол-ва одновременно исполняемых скриптов. Проверьте условиях запуска других скриптов, это может быть кнопка запуска, запуск при включении F4, запуск при переходе на меню музея и т.д.    
+Также, **не допустимо** иметь скрипты с таким же названием, как и мои скрипты. Если у вас есть такие скрипты, то удалите их, или переименуйте их. Причина не в моей вредности, а в том, что в таком случае, мой скрипт будет пытаться запустить чужой код вместо моего и это может приводить к непредсказуемым результатам, чаще всего печальным.  
 
-### en:
-Warning: bad english (VERY BAD)  
-###### In script Museum init can be changed:
+**Коды для вставки** смотрите в разделе `Import codes:` ниже.
 
-`buy_maxtier` - max tier that can be bough from OFFSHORE MARKET.  
-`add_tier` - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`.  
+При владении приемлимым уровнем английского дополнительное описание работы можно посмотреть в самом низу в сегменте `Some explanation:`. Мне лень было переводить обратно, исходник писал для англоязычных пользователей =)
+
+### EN:
+Warning: bad english sometimes 
+#### `museum init` configuring:
+
+**`buy_maxtier`** - max tier that can be bough from OFFSHORE MARKET.  
+**`add_tier`** - it is additional tiers, change from 1 to 12 for upgrading your stones to `buy_maxtier + add_tier`.  
+**`max_cycles`** - can be any positive number starting from 1 or can be number -1 for infinity cycles. 1 cycle is all 129 slots checked and tried to upgrade.  
 **PRO TIP:** use [`TPT2.xlsx` table](https://github.com/Ham5terzilla/TPT2-museum-script-by-Ham5terzilla/raw/main/TPT2.xlsx) for calculate `buy_maxtier` and `add_tier` values for your case.  
-`max_cycles` - can be any positive number starting from 1 or can be number -1 for infinity cycles. 1 cycle is all 129 slots checked and tried to upgrade.  
 `max_turbo_combine` and `max_turbo_buy` can be changed, but not really needed, see for limitation of executed scripts in one time (100?), so, in sum that values should be lesser than 75.  
 `current_turbo_combine`, `current_turbo_buy`, **`ps_target_tier`**, `current_equipped_slot` and `current_cycle` is constant values for starting and better not changing it.  
 
-###### Description:
+#### Description:
 My museum script have cycles. One cycle is checking all 130 slots in equipped. If stone can be upgraded, stone upgraded.  
 **Script cover all cases of offshore market changing: tier's up, tier's down, *changing element(stop selling element).*** And because of this, script can work overnight without controlling.    
 Script upgrade stones to `add_tier` + buyable tier. For example, if offshore market sell **NOW** t5 and our `add_tier` is `6` script upgrade stone to t11.  
@@ -31,9 +49,9 @@ Max possible upgrade is `buy_maxtier` + `add_tier`.
 
 Put all stones which you want to upgrade to you're equipped inv. (tier 1 or tier any) And all that stones (including universal) upgraded after many many time. 
 
-**Start state** is no any stones in inventory(not equipped)(right area) and in combinator
+**Start state** is **ZERO** stones in inventory(it is not equipped, right area) and in combinator
 
-###### Important:
+#### Important:
 **Conflict with `turbo exec`**, don't try to use it with my scripts, i use own system.  
 Conflict with any scripts called as ANY of my scripts. It is very important, if you have any scripts called as my then my script can't work properly.    
 Be sure what you doesn't launch any another scripts with my scripts (see for scripts with same impulse key, scripts launching on AI open, scripts launching on museum open, etc). Because executable script limit is 100.  
